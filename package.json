@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/jkmounts/MemberManager/issues"
   },
-  "homepage": "https://github.com/jkmounts/MemberManager#readme"
+  "homepage": "https://github.com/jkmounts/MemberManager#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
