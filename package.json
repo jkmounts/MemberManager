@@ -1,0 +1,23 @@
+{
+  "name": "membermanager",
+  "version": "1.0.0",
+  "description": "App for managing membership information",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkmounts/MemberManager.git"
+  },
+  "keywords": [
+    "Members",
+    "Database"
+  ],
+  "author": "Jestin Mounts",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jkmounts/MemberManager/issues"
+  },
+  "homepage": "https://github.com/jkmounts/MemberManager#readme"
+}
