@@ -6,20 +6,10 @@ addMemberForm.addEventListener('submit', (e) => {
     addMembertoDB(e);
 });
 
-async function addMembertoDB(e) {
+function addMembertoDB(e) {
     // Create member object with values from form on page
     let name = e.target.querySelector("input[name='name']").value;
     let email = e.target.querySelector("input[name='email']").value;
     let member = new Member(name, email);
-    
-    const options = {
-        method: 'POST',
-        body: JSON.stringify(member),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    }
-    const response = await fetch('/api', options);
-    const json = await response.json();
-    console.log(json);
+    member.addToDB();
 }
