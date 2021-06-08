@@ -17,5 +17,10 @@ function createMember(e) {
 async function getMembers() {
     const response = await fetch('/api');
     const data = await response.json();
-    console.log(data);
+    data.forEach(member => {
+        const memberList = document.querySelector('#memberList');
+        const li = document.createElement('li');  
+        li.textContent = `${member.name}, ${member.email}`;
+        memberList.append(li);
+    });
 }
