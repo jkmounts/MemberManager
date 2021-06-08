@@ -6,8 +6,13 @@ app.listen(3000, () => console.log('listening at 3000...'));
 app.use(express.static('public'));
 app.use(express.json({limit: '1mb'}));
 
-const database = new Datastore('database.db');
-database.loadDatabase();
+const database = new Datastore({ filename: 'database.db', autoload: true});
+
+app.get('/api', (request, response) => {
+    database.find({}, (err, members) => {
+        response.json(members);
+    });
+})
 
 app.post('/api', (request, response) => {
     console.log('Post request received');
