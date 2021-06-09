@@ -1,5 +1,7 @@
 console.log("app.js connected");
 
+getMembers();
+
 const addMemberForm = document.querySelector('#addMember');
 addMemberForm.addEventListener('submit', (e) => {
     e.preventDefault();
