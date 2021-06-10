@@ -61,3 +61,23 @@ input {
 p.name {
     font-weight: 600;
 }
+
+@media screen and (min-width: 600px) {
+    header {
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    #pageTitle, #memberForm {
+        flex: 0 1 50%
+    }
+    
+    #memberList {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    .member {
+        flex: 1 0 auto;
+    }
+}
