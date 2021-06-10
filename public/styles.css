@@ -49,3 +49,15 @@ label p {
 input {
     flex: 3 0 auto;
 }
+
+.member {
+    border: 2px solid #274C77;
+    background-color: #E7ECEF;
+    border-radius: 0.5rem;
+    margin: 5px;
+    padding: 2px;
+}
+
+p.name {
+    font-weight: 600;
+}
