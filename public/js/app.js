@@ -6,6 +6,8 @@ const addMemberForm = document.querySelector('#addMember');
 addMemberForm.addEventListener('submit', (e) => {
     e.preventDefault();
     createMember(e);
+    refreshMembers();
+    e.target.reset();
 });
 
 function createMember(e) {
@@ -16,13 +18,19 @@ function createMember(e) {
     member.addToDB();
 }
 
+const memberList = document.querySelector('#memberList');
+
 async function getMembers() {
     const response = await fetch('/api');
     const data = await response.json();
     data.forEach(member => {
-        const memberList = document.querySelector('#memberList');
         createMemberDiv(member, memberList);
     });
+}
+
+function refreshMembers() {
+    memberList.innerHTML = '';
+    getMembers();
 }
 
 function createMemberDiv(member, mainDiv) {
