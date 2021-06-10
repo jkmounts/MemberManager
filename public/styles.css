@@ -1,0 +1,51 @@
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+body {
+    background-color: #F9ECCC;
+    font-family: 'Oswald', sans-serif;
+}
+
+h1 {
+    margin: 0;
+}
+
+#wrapper, form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#pageTitle {
+    background-color: #274C77;
+    color: #E7ECEF;
+    padding: 10px;
+}
+
+#memberForm {
+    background-color: #8EA4D2;
+    padding: 10px;
+}
+
+form#addMember, label {
+    display: flex;
+}
+
+label {
+    flex-basis: 100%;
+    display: flex;
+    flex-flow: row wrap;
+}
+
+label p {
+    min-width: 100px;
+}
+
+input {
+    flex: 3 0 auto;
+}

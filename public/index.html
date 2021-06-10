@@ -5,34 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Membership Manager</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
-    <header>
-        <h1>Membership Manager</h1>
-        <p>An app for adding and managing group member information</p>
-    </header>
+    <div id="wrapper">
 
-    <main>
-        <div>
-            <form autocomplete="off" name="addMember" id="addMember">
-                <label>
-                    Name:
-                    <input type="text" name="name">
-                </label>
-                <label>
-                    Email:
-                    <input type="email" name="email">
-                </label>
-                <input type="submit" value="Add Member">
-            </form>
+        <header>
+            <div id="pageTitle">
+                <h1>Membership Manager</h1>
+                <p>An app for adding and managing group member information</p>
+            </div>
+
+            <div id="memberForm">
+                <form autocomplete="off" name="addMember" id="addMember">
+                    <label>
+                        <p>Name:</p>
+                        <input type="text" name="name">
+                    </label>
+                    <label>
+                        <p>Email:</p>
+                        <input type="email" name="email">
+                    </label>
+                    <input type="submit" value="Add Member">
+                </form>
+            </div>
+        </header> 
+
+        <div id="memberList">
+    <!-- Members from db inserted here -->
         </div>
 
-        <ul id="memberList">
-<!-- Members from db inserted here -->
-        </ul>
-    </main>
-    
+    </div>  
 </body>
 <script src="js/Member.js"></script>
 <script src="js/app.js"></script>
