@@ -21,23 +21,27 @@ async function getMembers() {
     const data = await response.json();
     data.forEach(member => {
         const memberList = document.querySelector('#memberList');
-        // Create div for storing individual members
-        const div = document.createElement('div');  
-        div.id = member._id;
-        div.className = 'member';
-
-        // Create p for storing member name
-        const name = document.createElement('p');
-        name.textContent = member.name;
-        name.classList = 'name';
-
-        // Create p for storing member email
-        const email = document.createElement('p');
-        email.textContent = member.email;
-        email.classList = 'email';
-
-        // Append name and email to created div and new div to the dom
-        div.append(name, email);
-        memberList.append(div);
+        createMemberDiv(member, memberList);
     });
+}
+
+function createMemberDiv(member, mainDiv) {
+    // Create div for storing individual members
+    const div = document.createElement('div');  
+    div.id = member._id;
+    div.className = 'member';
+
+    // Create p for storing member name
+    const name = document.createElement('p');
+    name.textContent = member.name;
+    name.classList = 'name';
+
+    // Create p for storing member email
+    const email = document.createElement('p');
+    email.textContent = member.email;
+    email.classList = 'email';
+
+    // Append name and email to created div and new div to the dom
+    div.append(name, email);
+    mainDiv.append(div);
 }
