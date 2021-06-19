@@ -61,23 +61,48 @@ function createMemberDiv(member, mainDiv) {
 
 // Function to add event listener to edit buttons on page
 function createEditHandlers() {
-    const editButtons = document.querySelectorAll('button.edit');
+    const editButtons = document.querySelectorAll('#memberList button');
     editButtons.forEach((button) => {
-        button.addEventListener('click', (e) => allowEdit(e));
+        button.addEventListener('click', (e) => {
+            if (e.target.className === 'edit') {
+                allowEdit(e.target);
+            } else if (e.target.className === 'save') {
+                saveEdits(e.target);
+                // Save info
+            }
+        })       
     })
 }
 
 // Turns member information into editable
-function allowEdit(e) {
-    if (e.target.className === 'edit') {
-        const memberDivToEdit = e.target.parentElement;
-        const nameElement = memberDivToEdit.querySelector('.name');
-        const nameValue = nameElement.textContent;
-        const emailElement = memberDivToEdit.querySelector('.email');
-        const emailValue = emailElement.textContent;
-        nameElement.innerHTML = `<input type="text" value="${nameValue}"></input>`;
-        emailElement.innerHTML = `<input type="text" value="${emailValue}"></input>`;
-        e.target.textContent = 'Save';
-        e.target.classList = 'save';
+function allowEdit(button) {
+    const memberDivToEdit = button.parentElement;
+    const nameElement = memberDivToEdit.querySelector('.name');
+    const nameValue = nameElement.textContent;
+    const emailElement = memberDivToEdit.querySelector('.email');
+    const emailValue = emailElement.textContent;
+    nameElement.innerHTML = `<input type="text" value="${nameValue}"></input>`;
+    emailElement.innerHTML = `<input type="text" value="${emailValue}"></input>`;
+    button.textContent = 'Save';
+    button.classList = 'save';
+}
+
+function saveEdits(button) {
+    const memberDivSelected = button.parentElement;
+    const memberId = memberDivSelected.id;
+    const updatedName = memberDivSelected.querySelector('.name input').value;
+    const updatedEmail = memberDivSelected.querySelector('.email input').value;
+    updateEntry(memberId, updatedName, updatedEmail);
+}
+
+async function updateEntry(id, newName, newEmail) {
+    const options = {
+        method: 'PUT',
+        body: JSON.stringify({name: newName, email: newEmail, _id: id}),
+        headers: {
+            "Content-Type": "application/json"
+        }
     }
+    const response = await fetch('/api', options);
+    console.log(response);
 }

@@ -23,3 +23,10 @@ app.post('/api', (request, response) => {
         status: "success"
     });
 })
+
+app.put('/api', (request, response) => {
+    const member = request.body;
+    database.update({ _id: member._id }, member, {}, function(err) {
+        response.json(member);
+    });
+})
