@@ -49,7 +49,35 @@ function createMemberDiv(member, mainDiv) {
     email.textContent = member.email;
     email.classList = 'email';
 
+    // Create edit button
+    const button = document.createElement('button');
+    button.textContent = 'Edit';
+    button.classList = 'edit';
+
     // Append name and email to created div and new div to the dom
-    div.append(name, email);
+    div.append(name, email, button);
     mainDiv.append(div);
+}
+
+// Function to add event listener to edit buttons on page
+function createEditHandlers() {
+    const editButtons = document.querySelectorAll('button.edit');
+    editButtons.forEach((button) => {
+        button.addEventListener('click', (e) => allowEdit(e));
+    })
+}
+
+// Turns member information into editable
+function allowEdit(e) {
+    if (e.target.className === 'edit') {
+        const memberDivToEdit = e.target.parentElement;
+        const nameElement = memberDivToEdit.querySelector('.name');
+        const nameValue = nameElement.textContent;
+        const emailElement = memberDivToEdit.querySelector('.email');
+        const emailValue = emailElement.textContent;
+        nameElement.innerHTML = `<input type="text" value="${nameValue}"></input>`;
+        emailElement.innerHTML = `<input type="text" value="${emailValue}"></input>`;
+        e.target.textContent = 'Save';
+        e.target.classList = 'save';
+    }
 }
