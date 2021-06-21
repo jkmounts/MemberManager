@@ -1,5 +1,12 @@
 const memberList = document.querySelector('#memberList');
 
+pageLoad();
+
+async function pageLoad() {
+    await getMembers();
+    createEditHandlers();
+}
+
 // Function retrieves members from db and adds to page
 async function getMembers() {
     const response = await fetch('/api');
@@ -8,8 +15,6 @@ async function getMembers() {
         createMemberDiv(member, memberList);
     });
 }
-
-getMembers();
 
 const addMemberForm = document.querySelector('#addMember');
 // Event Listener to create member when form is submitted and refersh page display
@@ -90,9 +95,15 @@ function allowEdit(button) {
 function saveEdits(button) {
     const memberDivSelected = button.parentElement;
     const memberId = memberDivSelected.id;
-    const updatedName = memberDivSelected.querySelector('.name input').value;
-    const updatedEmail = memberDivSelected.querySelector('.email input').value;
+    const nameElement = memberDivSelected.querySelector('.name');
+    const emailElement = memberDivSelected.querySelector('.email');
+    const updatedName = nameElement.querySelector('input').value;
+    const updatedEmail = emailElement.querySelector('input').value;
     updateEntry(memberId, updatedName, updatedEmail);
+    nameElement.innerHTML = updatedName;
+    emailElement.innerHTML = updatedEmail;
+    button.textContent = 'Edit';
+    button.classList = 'edit';
 }
 
 async function updateEntry(id, newName, newEmail) {
