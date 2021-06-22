@@ -1,32 +1,27 @@
 const memberList = document.querySelector('#memberList');
+getMembers();
+newMemberFormListener();
 
-pageLoad();
-
-async function pageLoad() {
-    await getMembers();
-    createEditHandlers();
-}
-
-// Function retrieves members from db and adds to page
 async function getMembers() {
     const response = await fetch('/api');
     const data = await response.json();
     data.forEach(member => {
         createMemberDiv(member, memberList);
     });
+    createEditHandlers();
 }
 
-const addMemberForm = document.querySelector('#addMember');
-// Event Listener to create member when form is submitted and refersh page display
-addMemberForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    createMember(e.target);
-    refreshMembers();
-    e.target.reset();
-});
+function newMemberFormListener() {
+    const newMemberForm = document.querySelector('#addMember');
+    newMemberForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        createMember(e.target);
+        refreshMembers();
+        e.target.reset();
+    });
+}
 
 function createMember(form) {
-    // Create member object with values from form on page
     let name = form.querySelector("input[name='name']").value;
     let email = form.querySelector("input[name='email']").value;
     let member = new Member(name, email);
@@ -73,7 +68,6 @@ function createEditHandlers() {
                 allowEdit(e.target);
             } else if (e.target.className === 'save') {
                 saveEdits(e.target);
-                // Save info
             }
         })       
     })
