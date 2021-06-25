@@ -1,4 +1,4 @@
-const memberList = document.querySelector('#memberList');
+const memberListDiv = document.querySelector('#memberList');
 getMembers();
 newMemberFormListener();
 
@@ -6,7 +6,7 @@ async function getMembers() {
     const response = await fetch('/api');
     const data = await response.json();
     data.forEach(member => {
-        createMemberDiv(member, memberList);
+        createMemberDiv(member, memberListDiv);
     });
     createEditHandlers();
 }
@@ -29,11 +29,11 @@ function createMember(form) {
 }
 
 function refreshMembers() {
-    memberList.innerHTML = '';
+    memberListDiv.innerHTML = '';
     getMembers();
 }
 
-function createMemberDiv(member, mainDiv) {
+function createMemberDiv(member) {
     // Create div for storing individual members
     const div = document.createElement('div');  
     div.id = member._id;
@@ -56,7 +56,7 @@ function createMemberDiv(member, mainDiv) {
 
     // Append name and email to created div and new div to the dom
     div.append(name, email, button);
-    mainDiv.append(div);
+    memberListDiv.append(div);
 }
 
 // Function to add event listener to edit buttons on page
