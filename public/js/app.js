@@ -6,7 +6,7 @@ async function getMembers() {
     const response = await fetch('/api');
     const data = await response.json();
     data.forEach(member => {
-        createMemberDiv(member, memberListDiv);
+        createMemberDiv(member);
     });
     createEditHandlers();
 }
@@ -15,15 +15,20 @@ function newMemberFormListener() {
     const newMemberForm = document.querySelector('#addMember');
     newMemberForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        createMember(e.target);
+        let memberInfo = getNewMemberInfo(e.target);
+        createMember(...memberInfo);
         refreshMembers();
         e.target.reset();
     });
 }
 
-function createMember(form) {
+function getNewMemberInfo(form) {
     let name = form.querySelector("input[name='name']").value;
     let email = form.querySelector("input[name='email']").value;
+    return [name, email];
+}
+
+function createMember(name, email) {
     let member = new Member(name, email);
     member.addToDB();
 }
@@ -73,7 +78,6 @@ function createEditHandlers() {
     })
 }
 
-// Turns member information into editable
 function allowEdit(button) {
     const memberDivToEdit = button.parentElement;
     const nameElement = memberDivToEdit.querySelector('.name');
