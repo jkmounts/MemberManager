@@ -2,7 +2,7 @@ const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+")
 
 const emailField = document.querySelector("input[name='email']");
 
-emailField.addEventListener('input', e => {
+emailField.addEventListener('input', () => {
     const emailEntry = emailField.value;
     const validEmail = emailRegex.test(emailEntry);
     if (validEmail) {
