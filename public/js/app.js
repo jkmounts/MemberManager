@@ -54,12 +54,16 @@ function createMemberDiv(member) {
     email.classList = 'email';
 
     // Create edit button
-    const button = document.createElement('button');
-    button.textContent = 'Edit';
-    button.classList = 'edit';
+    const editButton = document.createElement('button');
+    editButton.textContent = 'Edit';
+    editButton.classList = 'edit';
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Delete';
+    deleteButton.classList = 'delete';
 
     // Append name and email to created div and new div to the dom
-    div.append(name, email, button);
+    div.append(name, email, editButton, deleteButton);
     memberListDiv.append(div);
 }
 
@@ -68,6 +72,8 @@ memberListDiv.addEventListener('click', (e) => {
         allowEdit(e.target);
     } else if (e.target.className === 'save') {
         saveEdits(e.target);
+    } else if (e.target.className === 'delete') {
+        deleteMember(e.target);
     }
 })
 
@@ -101,6 +107,25 @@ async function updateEntry(id, newName, newEmail) {
     const options = {
         method: 'PUT',
         body: JSON.stringify({name: newName, email: newEmail, _id: id}),
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+    const response = await fetch('/api', options);
+    console.log(response);
+}
+
+function deleteMember(button) {
+    const memberDivSelected = button.parentElement;
+    const memberID = memberDivSelected.id;
+    deleteMemberFromDB(memberID);
+    memberDivSelected.remove();
+}
+
+async function deleteMemberFromDB(id) {
+    const options = {
+        method: 'DELETE',
+        body: JSON.stringify({_id: id}),
         headers: {
             "Content-Type": "application/json"
         }

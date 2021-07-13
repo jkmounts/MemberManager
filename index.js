@@ -30,3 +30,10 @@ app.put('/api', (request, response) => {
         response.json(member);
     });
 })
+
+app.delete('/api', (request, response) => {
+    const member = request.body;
+    database.remove({ _id: member._id }, { multi: true }, function (err, numRemoved) {
+  
+    });
+})
