@@ -8,7 +8,6 @@ async function getMembers() {
     data.forEach(member => {
         createMemberDiv(member);
     });
-    createEditHandlers();
 }
 
 function newMemberFormListener() {
@@ -63,9 +62,6 @@ function createMemberDiv(member) {
     div.append(name, email, button);
     memberListDiv.append(div);
 }
-
-// Function to add event listener to edit buttons on page
-
 
 memberListDiv.addEventListener('click', (e) => {
     if (e.target.className === 'edit') {
