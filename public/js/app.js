@@ -65,18 +65,15 @@ function createMemberDiv(member) {
 }
 
 // Function to add event listener to edit buttons on page
-function createEditHandlers() {
-    const editButtons = document.querySelectorAll('#memberList button');
-    editButtons.forEach((button) => {
-        button.addEventListener('click', (e) => {
-            if (e.target.className === 'edit') {
-                allowEdit(e.target);
-            } else if (e.target.className === 'save') {
-                saveEdits(e.target);
-            }
-        })       
-    })
-}
+
+
+memberListDiv.addEventListener('click', (e) => {
+    if (e.target.className === 'edit') {
+        allowEdit(e.target);
+    } else if (e.target.className === 'save') {
+        saveEdits(e.target);
+    }
+})
 
 function allowEdit(button) {
     const memberDivToEdit = button.parentElement;
