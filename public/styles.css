@@ -16,6 +16,14 @@ h1 {
     margin: 0;
 }
 
+input, button {
+    margin: 2px;
+}
+
+button {
+    padding: 3px;
+}
+
 #wrapper, form {
     display: flex;
     flex-flow: column nowrap;
@@ -43,7 +51,7 @@ label {
 }
 
 label p {
-    min-width: 100px;
+    padding: 5px;
 }
 
 input {
@@ -78,6 +86,12 @@ p.name {
     }
 
     .member {
-        flex: 1 0 auto;
+        flex: 1 0 40%;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .member {
+        flex: 1 0 20%;
     }
 }
