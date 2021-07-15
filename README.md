@@ -8,9 +8,9 @@ To run this app follow the instructions below:
 ```
 git clone https://github.com/jkmounts/MemberManager.git
 ```
-[2] In your terminal, Run `npm install` in the root directory (MemberManager) to install all the needed node-modules.
+[2] In your terminal, move to the root-directory of the project `cd MemberManager`, and run `npm install` to install all the needed node-modules.
 
-[3] Start the server by running `node index.js` in your terminal. (Still from the root directory)
+[3] Start the server by running `node index.js` in your terminal. (Still from the MemberManager directory)
 
 [4] Navigate to <http://localhost:3000/> in your browser.
 
