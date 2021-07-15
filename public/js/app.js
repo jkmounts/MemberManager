@@ -1,5 +1,6 @@
 const memberListDiv = document.querySelector('#memberList');
 getMembers();
+const newMemberForm = document.querySelector('#addMember');
 newMemberFormListener();
 
 async function getMembers() {
@@ -10,8 +11,23 @@ async function getMembers() {
     });
 }
 
+const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+const emailField = newMemberForm.querySelector("input[name='email']");
+const submitButton = newMemberForm.querySelector("input[type='submit']");
+
+emailField.addEventListener('input', () => {
+    let isValidEmail = false;
+    const emailEntry = emailField.value;
+    isValidEmail = emailRegex.test(emailEntry);
+    if (!isValidEmail) {
+        submitButton.disabled = true;
+    } else {
+        submitButton.disabled = false;
+    }
+})
+
 function newMemberFormListener() {
-    const newMemberForm = document.querySelector('#addMember');
     newMemberForm.addEventListener('submit', (e) => {
         e.preventDefault();
         let memberInfo = getNewMemberInfo(e.target);
@@ -30,6 +46,7 @@ function getNewMemberInfo(form) {
 function createMember(name, email) {
     let member = new Member(name, email);
     member.addToDB();
+    submitButton.disabled = true;
 }
 
 function refreshMembers() {
