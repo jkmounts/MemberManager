@@ -33,3 +33,5 @@ I have met the following project requirements as outlined in the course syllabus
   - Information submitted is stored in the database
 - [X] Implement a regular expression (regex) to ensure a field either a phone number or an email address is always stored and displayed in the same format
   - Regex used to verify valid email and diable submission if it is invalid.
+- [X] Create a web server with at least one route and connect to it from your application using ExpressJS
+  - Index.html and API are both served up using express
